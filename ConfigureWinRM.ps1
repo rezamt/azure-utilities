@@ -422,7 +422,7 @@ function Create-Certificate
         [string]$hostname
     )
 
-    New-SelfsignedCertificateEx -Subject "CN=$hostname" -EKU "Server Authentication" -KeySpec "Signature" ` -KeyUsage "DigitalSignature" -FriendlyName "Microsoft RSA SChannel Cryptographic Provider" -StoreLocation LocalMachine  -NotAfter $([datetime]::now.AddDays(0)) | Out-Null
+    New-SelfsignedCertificateEx -Subject "CN=$hostname" -EKU "Server Authentication" -KeySpec "Signature" ` -KeyUsage "DigitalSignature" -FriendlyName "Microsoft RSA SChannel Cryptographic Provider" -StoreLocation LocalMachine  -NotAfter $([datetime]::now.AddDays(1)) | Out-Null
 
     $thumbprint=(Get-ChildItem cert:\Localmachine\my | Where-Object { $_.Subject -eq "CN=" + $hostname } | Select-Object -Last 1).Thumbprint
 
